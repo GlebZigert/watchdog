@@ -1,0 +1,33 @@
+#ifndef HEARTBEAT
+#define HEARTBEAT
+
+#include <QObject>
+#include <QTimer>
+#include <QTcpSocket>
+#include <QHostAddress>
+#include <QProcess>
+#include <QTcpServer>
+
+class HeartBeat : public QTcpServer
+{
+     Q_OBJECT
+public:
+    explicit HeartBeat(QObject *parent = nullptr);
+
+   QTcpSocket* socket;
+   QTimer timer;
+   QTimer reload;
+   QString     m_data;
+   QByteArray Data;
+
+public slots:
+    void sockReady();
+    void sockDisc();
+    void do_reload();
+    void incomingConnection(qintptr socketDescriptor) override;
+
+signals:
+
+};
+
+#endif // HEARTBEAT
