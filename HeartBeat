@@ -19,13 +19,17 @@ public:
    QTimer reload;
    QString     m_data;
    QByteArray Data;
-
+  QProcess *process;
 public slots:
     void sockReady();
     void sockDisc();
     void do_reload();
+    void read();
     void incomingConnection(qintptr socketDescriptor) override;
 
+void processStarted();
+void readyReadStandardOutput();
+void encodingFinished(int);
 signals:
 
 };
